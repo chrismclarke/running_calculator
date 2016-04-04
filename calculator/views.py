@@ -4,6 +4,9 @@ from django.utils import timezone
 from .forms import ContactForm
 from numpy import load, zeros, nan
 from prediction_formula import *
+from getpass import getuser
+
+USER = getuser()
 
 def post_new(request):
     if request.method == "POST":
@@ -16,7 +19,10 @@ def post_new(request):
             time3 = form.cleaned_data['time3']
             distance3 = int(form.cleaned_data['distance3'])
             distanceToPredict = form.cleaned_data['distanceToPredict']
-            x = load('male.npy')
+            if USER=='duncanblythe':
+                x = load('male.npy')
+            else:
+                x = load('/home/blythed/running_calculator/male.npy')
             data = nan*zeros(10)
             data[distance1] = time1
             data[distance2] = time2
