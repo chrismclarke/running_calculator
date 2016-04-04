@@ -20,9 +20,9 @@ class ContactForm(forms.Form):
                 ("9", "Marathon"),
                 )
     distance1 = forms.ChoiceField(choices=OPTIONS_DIST,label='Distance A')
-    time1 = forms.FloatField(initial=0,label='Time A')
+    time1 = forms.CharField(initial='0:00:00.00',label='Time A')
     distance2 = forms.ChoiceField(choices=OPTIONS_DIST,label='Distance B')
-    time2 = forms.FloatField(initial=0, label='Time B')
+    time2 = forms.CharField(initial='0:00:00.00',label='Time B')
     distance3 = forms.ChoiceField(choices=OPTIONS_DIST,label='Distance C')
-    time3 = forms.FloatField(initial=0, label='Time C')
+    time3 = forms.CharField(initial='0:00:00.00',label='Time C')
     distanceToPredict = forms.ChoiceField(choices=OPTIONS_DIST,label='Distance to predict')

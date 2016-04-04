@@ -4,7 +4,9 @@
     </head>
     <body>
         <p>
-        If fewer than 3 events attempted, leave 0.
+        If fewer than 3 events attempted, leave time as 0:00:00.00
+        <br>
+        Enter in format hours:minutes:seconds.hundredths of a second 
         </p>
         <form method="POST" class="post-form">{% csrf_token %}
             {{ form.as_p }}

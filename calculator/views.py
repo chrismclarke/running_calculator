@@ -13,16 +13,16 @@ def post_new(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             gender = form.cleaned_data['gender']
-            time1 = form.cleaned_data['time1']
             distance1 = int(form.cleaned_data['distance1'])
-            time2 = form.cleaned_data['time2']
+            time1 = convert_to_seconds(form.cleaned_data['time1'])
             try:
                 distance2 = int(form.cleaned_data['distance2'])
+                time2 = convert_to_seconds(form.cleaned_data['time2'])
             except ValueError:
                 distance2 = np.nan
-            time3 = form.cleaned_data['time3']
             try:
                 distance3 = int(form.cleaned_data['distance3'])
+                time3 = convert_to_seconds(form.cleaned_data['time3'])
             except ValueError:
                 distance3 = np.nan
             distanceToPredict = form.cleaned_data['distanceToPredict']
