@@ -5,9 +5,12 @@ Possible distances: 100, 200, 400, 800, 1500, Mile, 5k, 10k, HM, Mar
 
 import numpy as np
 import lmc
+from getpass import getuser
 
 fields = ('Distance 1', 'Performance 1', 'Distance 2', 'Performance 2',\
              'Distance 3', 'Performance 3','Distance to Predict', 'Predicted Performance')
+
+USER = getuser()
 
 def portal_to_prediction(x,data,tbc):
     conf = {}
@@ -22,7 +25,10 @@ def portal_to_prediction(x,data,tbc):
     tobecompleted = np.zeros(y.shape)
     tobecompleted[-1,:] = tbc
     method_conf = {}
-    method_conf['distances'] = np.load('distances.npy')
+    if USER=='duncanblythe':
+        method_conf['distances'] = np.load('distances.npy')
+    else:
+        method_conf['distances'] = np.load('/home/blythed/running_calculator/distances.npy')
     method_conf['alg_iterations'] = 5000
     method_conf['r'] = 3
     predicted = lmc.lmc(y,tobecompleted,method_conf)
