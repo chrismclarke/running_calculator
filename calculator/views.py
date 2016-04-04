@@ -12,21 +12,36 @@ def post_new(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+            gender = form.cleaned_data['gender']
             time1 = form.cleaned_data['time1']
             distance1 = int(form.cleaned_data['distance1'])
             time2 = form.cleaned_data['time2']
-            distance2 = int(form.cleaned_data['distance2'])
+            try:
+                distance2 = int(form.cleaned_data['distance2'])
+            except ValueError:
+                distance2 = np.nan
             time3 = form.cleaned_data['time3']
-            distance3 = int(form.cleaned_data['distance3'])
+            try:
+                distance3 = int(form.cleaned_data['distance3'])
+            except ValueError:
+                distance3 = np.nan
             distanceToPredict = form.cleaned_data['distanceToPredict']
             if USER=='duncanblythe':
-                x = load('male.npy')
+                if gender=='M':
+                    x = load('male.npy')
+                else:
+                    x = load('female.npy')
             else:
-                x = load('/home/blythed/running_calculator/male.npy')
+                if gender=='M':
+                    x = load('/home/blythed/running_calculator/male.npy')
+                else:
+                    x = load('/home/blythed/running_calculator/female.npy')
             data = nan*zeros(10)
             data[distance1] = time1
-            data[distance2] = time2
-            data[distance3] = time3
+            if not(np.isnan(distance2)):
+                data[distance2] = time2
+            if not(np.isnan(distance3)):
+                data[distance3] = time3
             tbc = zeros(10)
             tbc[distanceToPredict] = 1
             prediction = portal_to_prediction(x,data,tbc)

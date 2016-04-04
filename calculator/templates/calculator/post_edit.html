@@ -3,6 +3,9 @@
         <title>LMC predictor</title>
     </head>
     <body>
+        <p>
+        If fewer than 3 events attempted, leave 0.
+        </p>
         <form method="POST" class="post-form">{% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="save btn btn-default">calculate</button>
