@@ -8,7 +8,7 @@ from getpass import getuser
 
 USER = getuser()
 
-def post_new(request):
+def enter_perform(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -49,4 +49,4 @@ def post_new(request):
             return HttpResponse(html)
     else:
         form = ContactForm()
-        return render(request, 'calculator/post_edit.html', {'form': form})
+        return render(request, 'calculator/enter_times.html', {'form': form})
