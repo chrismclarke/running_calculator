@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.utils import timezone
-from .forms import ContactForm
+from .forms import PerformanceForm 
 from numpy import load, zeros, nan
 from prediction_formula import *
 from getpass import getuser
@@ -10,7 +10,7 @@ USER = getuser()
 
 def enter_perform(request):
     if request.method == "POST":
-        form = ContactForm(request.POST)
+        form = PerformanceForm(request.POST)
         if form.is_valid():
             gender = form.cleaned_data['gender']
             distance1 = int(form.cleaned_data['distance1'])
@@ -45,8 +45,8 @@ def enter_perform(request):
             tbc = zeros(10)
             tbc[distanceToPredict] = 1
             prediction = portal_to_prediction(x,data,tbc)
-            html = "<html><body>Predicted time: %s.</body></html>" % convert_to_time(prediction)
+            html = "<html><body>Predicted time: %s</body></html>" % convert_to_time(prediction)
             return HttpResponse(html)
     else:
-        form = ContactForm()
+        form = PerformanceForm()
         return render(request, 'calculator/enter_times.html', {'form': form})

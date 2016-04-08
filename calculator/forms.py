@@ -1,6 +1,6 @@
 from django import forms
 
-class ContactForm(forms.Form):
+class PerformanceForm(forms.Form):
     OPTIONS = (
                 ("M", "Male"),
                 ("F", "Female"),
