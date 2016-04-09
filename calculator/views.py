@@ -47,7 +47,7 @@ def enter_perform(request):
             prediction = portal_to_prediction(x,data,tbc)
             #html = "<html><body>Predicted time: %s</body></html>" % convert_to_time(prediction)
             #return HttpResponse(html)
-            form = PerformanceForm()
+            #form = PerformanceForm()
             return render(request, 'calculator/enter_times.html', {'form':form, 'results': 'Prediction: '+convert_to_time(prediction)})
     else:
         form = PerformanceForm()
