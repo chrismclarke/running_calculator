@@ -45,8 +45,10 @@ def enter_perform(request):
             tbc = zeros(10)
             tbc[distanceToPredict] = 1
             prediction = portal_to_prediction(x,data,tbc)
-            html = "<html><body>Predicted time: %s</body></html>" % convert_to_time(prediction)
-            return HttpResponse(html)
+            #html = "<html><body>Predicted time: %s</body></html>" % convert_to_time(prediction)
+            #return HttpResponse(html)
+            form = PerformanceForm()
+            return render(request, 'calculator/enter_times.html', {'form':form, 'results': 'Prediction: '+convert_to_time(prediction)})
     else:
         form = PerformanceForm()
-        return render(request, 'calculator/enter_times.html', {'form': form})
+        return render(request, 'calculator/enter_times.html', {'form': form, 'results': 'Prediction: '})

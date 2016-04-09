@@ -15,5 +15,3 @@ class Athlete(models.Model):
     bestHM = models.FloatField(default=0)
     bestMar = models.FloatField(default=0)
     gender = models.CharField(max_length=6,default='Male') 
-
-

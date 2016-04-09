@@ -26,3 +26,4 @@ class PerformanceForm(forms.Form):
     distance3 = forms.ChoiceField(choices=OPTIONS_DIST,label='Distance C')
     time3 = forms.CharField(initial='0:00:00.00',label='Time C')
     distanceToPredict = forms.ChoiceField(choices=OPTIONS_DIST,label='Distance to predict')
+
